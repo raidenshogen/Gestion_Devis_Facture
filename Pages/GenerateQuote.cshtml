@@ -1,0 +1,263 @@
+﻿@page
+@model Gestion_Devis_Facture.Pages.GenerateQuoteModel
+@{
+    @if (User.IsInRole("client"))
+    {
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <title>UIQ</title>
+            <meta name="description" content="">
+            <meta name="keywords" content="">
+
+            <!-- Favicons -->
+            <link href="./img/favicon.png" rel="icon">
+            <link href="./img/apple-touch-icon.png" rel="apple-touch-icon">
+
+            <!-- Fonts -->
+            <link href="https://fonts.googleapis.com" rel="preconnect">
+            <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+            <!-- Vendor CSS Files -->
+            <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+            <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+            <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+            <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+            <!-- Main CSS File -->
+            <link href="~/css/main.css" rel="stylesheet">
+            <link href="~/css/site.css" rel="stylesheet">
+        </head>
+
+        <body class="index-page">
+            <header id="header" class="header sticky-top">
+                <div class="branding d-flex align-items-center">
+                    <div class="container position-relative d-flex align-items-center justify-content-between">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <h1 class="sitename">UIQ</h1>
+                        </a>
+
+                        <nav id="navmenu" class="navmenu">
+                            <ul>
+                                <li><a href="~/index" class="active">Home</a></li>
+
+                                @if (User.IsInRole("client"))
+                                {
+                                    <li><a href="~/Agents/Agents_list">List of Clients</a></li>
+                                }
+                                else if (User.IsInRole("admin"))
+                                {
+                                    <li><a href="~/Users_list">List of Users</a></li>
+                                }
+
+                                <li class="auth-partial">
+                                    @await Html.PartialAsync("_LoginPartial")
+                                </li>
+                            </ul>
+
+                            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <br />
+                    <center><h1 class="text-2xl font-bold text-uppercase fw-bold">Quotes</h1></center>
+                    <br />
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createQuoteModal">
+                        New Quote
+                    </button>
+                </div>
+
+                <br />
+                <div class="bg-white rounded-lg shadow">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold mb-4">List Of Quotes</h2>
+                        <div class="overflow-x-auto justify-content-center">
+                            <table class="table table-striped">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Number</th>
+                                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Client</th>
+                                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Date</th>
+                                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Amount</th>
+                                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Status</th>
+                                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    @foreach (var quote in Model.Quotes)
+                                    {
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4 text-sm text-gray-900">@quote.QuoteNumber</td>
+                                            <td class="px-6 py-4 text-sm text-gray-900">@quote.Agent.Name</td>
+                                            <td class="px-6 py-4 text-sm text-gray-900">@quote.Date.ToShortDateString()</td>
+                                            <td class="px-6 py-4 text-sm text-gray-900">@quote.TotalAmount.ToString("N2") DH</td>
+                                            <td class="px-6 py-4 text-sm text-gray-900">@quote.Status</td>
+                                            <td class="px-6 py-4 text-sm text-gray-900">
+                                                <form method="post" asp-page-handler="DownloadPdf" asp-route-quoteId="@quote.Id" class="inline">
+                                                    <button type="submit" class="btn btn-success bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm">
+                                                        <i class="fas fa-download mr-1"></i> Download
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Quote Modal -->
+                <div class="modal fade" id="createQuoteModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create New Quote</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="createQuoteForm" method="post">
+                                    <div class="mb-4">
+                                        <label class="form-label">Client</label>
+                                        <select id="agentSelect" asp-for="Input.AgentId" class="form-select"
+                                                asp-items="@(new SelectList(Model.Agents, "Id", "Name"))" required>
+                                            <option value="">Select client</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Status</label>
+                                        <input type="text" asp-for="Input.Status" class="form-control" />
+                                    </div>
+                                    <div id="agentDetails" class="mb-4 p-4 bg-gray-50 rounded d-none">
+                                        <!-- Client details will be loaded here -->
+                                    </div>
+
+                                    <div id="items-container">
+                                        <h3 class="font-bold mb-2">Items</h3>
+                                        <div class="item-row mb-2">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" asp-for="Input.Items[0].Description" placeholder="Description" required>
+                                                </div>
+                                                <div class="col-2">
+                                                    <input type="number" class="form-control" asp-for="Input.Items[0].Quantity" placeholder="Quantity" min="1" required>
+                                                </div>
+                                                <div class="col-2">
+                                                    <input type="number" class="form-control" asp-for="Input.Items[0].UnitPrice" placeholder="Unit Price" min="0" step="0.01" required>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <button type="button" class="btn btn-danger remove-item">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="addItem" class="btn btn-secondary mt-2">Add Item</button>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Create Quote</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Top -->
+            <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+            <!-- Preloader -->
+            <div id="preloader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <!-- Vendor JS Files -->
+            <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="~/assets/vendor/php-email-form/validate.js"></script>
+            <script src="~/assets/vendor/aos/aos.js"></script>
+            <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+            <script src="~/assets/vendor/waypoints/noframework.waypoints.js"></script>
+            <script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+            <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+            <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+            <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+            <!-- Main JS File -->
+            <script src="~/js/main.js"></script>
+
+            @section Scripts {
+                <script>
+                    $(document).ready(function () {
+                        let itemIndex = 0;
+
+                        $('#agentSelect').change(function () {
+                            const agentId = $(this).val();
+                            if (agentId) {
+                                $.get(`?handler=AgentDetails&agentId=${agentId}`, function (agent) {
+                                    const details = `
+                                        <p class="text-sm">Address: ${agent.address}</p>
+                                        <p class="text-sm">Email: ${agent.email}</p>
+                                        <p class="text-sm">Phone: ${agent.phone}</p>
+                                    `;
+                                    $('#agentDetails').html(details).removeClass('d-none');
+                                });
+                            } else {
+                                $('#agentDetails').addClass('d-none');
+                            }
+                        });
+
+                        $('#addItem').click(function () {
+                            itemIndex++;
+                            const newRow = `
+                                <div class="item-row mb-2">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="Input.Items[${itemIndex}].Description" placeholder="Description" required>
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="number" class="form-control" name="Input.Items[${itemIndex}].Quantity" placeholder="Quantity" min="1" required>
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="number" class="form-control" name="Input.Items[${itemIndex}].UnitPrice" placeholder="Unit Price" min="0" step="0.01" required>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-danger remove-item">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            $('#items-container').append(newRow);
+                        });
+
+                        $(document).on('click', '.remove-item', function () {
+                            $(this).closest('.item-row').remove();
+                        });
+
+                        // Add antiforgery token to AJAX requests
+                        $.ajaxSetup({
+                            headers: {
+                                "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
+                            }
+                        });
+                    });
+                </script>
+            }
+        </body>
+        </html>
+    }
+}
+

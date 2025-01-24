@@ -1,0 +1,26 @@
+﻿@page
+@model Gestion_Devis_Facture.Pages.UserModel
+@{
+	<h2 class="text-center"> Welcome to your account Dear @Model.appUser?.FirstName </h2>
+
+
+	<div class="text-center">
+		First Name : @Model.appUser?.FirstName
+	</div>
+	<div class="text-center">
+		Last Name : @Model.appUser?.LastName
+	</div>
+	<div class="text-center">
+		Email : @Model.appUser?.Email
+	</div>
+	<div class="text-center">
+		Phone : @Model.appUser?.PhoneNumber
+	</div>
+	<div class="text-center">
+		Adress : @Model.appUser?.Address
+	</div>
+	<div class="text-center">
+		Created At : @Model.appUser?.CreatedAt.ToString("dd/MM/yyyy")
+	</div>
+}
+

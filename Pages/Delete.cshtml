@@ -1,0 +1,22 @@
+﻿@page
+@model Gestion_Devis_Facture.Pages.DeleteModel
+@using System.Data.SqlClient;
+@{
+	try
+	{
+		int id = Convert.ToInt32(Request.Query["id"]);
+		string Connect = "Data Source=DESKTOP-PSL7GKI;Initial Catalog=Gestion_Users;Integrated Security=True";
+		SqlConnection con = new SqlConnection(Connect);
+		con.Open();
+		string sql = "DELETE FROM [User] WHERE id=@id";
+		SqlCommand cmd = new SqlCommand(sql, con);
+		cmd.Parameters.AddWithValue("@id", id);
+		cmd.ExecuteNonQuery();
+	}
+	catch (Exception ex)
+	{
+		Console.WriteLine("Exception: " + ex.ToString());
+	}
+	Response.Redirect("/Users_list");
+}
+

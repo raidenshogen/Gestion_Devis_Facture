@@ -1,0 +1,21 @@
+﻿@page
+@using System.Data.SqlClient
+@model Gestion_Devis_Facture.Pages.Agents.DeleteModel
+@{
+	try
+	{
+		int id = Convert.ToInt32(Request.Query["Id"]);
+		string Connect = "Data Source=DESKTOP-PSL7GKI;Initial Catalog=InvoiceDb;Integrated Security=True";
+		SqlConnection con = new SqlConnection(Connect);
+		con.Open();
+		string sql = "DELETE FROM [Ags] WHERE id=@id";
+		SqlCommand cmd = new SqlCommand(sql, con);
+		cmd.Parameters.AddWithValue("@Id", id);
+		cmd.ExecuteNonQuery();
+	}
+	catch (Exception ex)
+	{
+		Console.WriteLine("Exception: " + ex.ToString());
+	}
+	Response.Redirect("./Agents_list");
+}

@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Gestion_Devis_Facture.Model
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+    {
+        if (User.IsInRole("client"))
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light"  href=" /User" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                    User
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
+                    <li><hr class="dropdown-divided"></li>
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
+                </ul>
+            </li>
+        }
+        else if (User.IsInRole("admin"))
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light"  href="/Admin" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                    Admin
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
+                    <li><hr class="dropdown-divided"></li>
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
+                </ul>
+            </li>
+            
+            
+        }
+       
+}
+else
+    {
+    <ul class="justify-content-sm-between">
+    <li class="nav-item">
+        <a class="nav-link text-light" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+            &nbsp;&nbsp;&nbsp;
+    <li class="nav-item">
+        <a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+			</li>
+		</ul>
+}
+</ul>

@@ -1,0 +1,787 @@
+﻿@page
+@model IndexModel
+
+@{
+   
+
+
+    ViewData["Title"] = "Home page";
+    @if (User.IsInRole("admin") || User.IsInRole("client"))
+    {
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <title>UIQ</title>
+            <meta name="description" content="">
+            <meta name="keywords" content="">
+
+            <!-- Favicons -->
+            <link href="./img/favicon.png" rel="icon">
+            <link href="./img/apple-touch-icon.png" rel="apple-touch-icon">
+
+            <!-- Fonts -->
+            <link href="https://fonts.googleapis.com" rel="preconnect">
+            <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+            <!-- Vendor CSS Files -->
+            <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+            <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+            <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+            <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+            <!-- Main CSS File -->
+            <link href="./css/main.css" rel="stylesheet">
+            <link href="./css/site.css" rel="stylesheet">
+            
+
+            <!-- =======================================================
+            * Template Name: BizLand
+            * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+            * Updated: Aug 07 2024 with Bootstrap v5.3.3
+            * Author: BootstrapMade.com
+            * License: https://bootstrapmade.com/license/
+            ======================================================== -->
+        </head>
+
+        <body class="index-page">
+
+            <header id="header" class="header sticky-top">
+                <div class="branding d-flex align-items-center">
+
+                    <div class="container position-relative d-flex align-items-center justify-content-between">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <!-- Uncomment the line below if you also wish to use an image logo -->
+                            <!-- <img src="assets/img/logo.png" alt=""> -->
+                            <h1 class="sitename">UIQ</h1>
+                        </a>
+
+                        <nav id="navmenu" class="navmenu">
+                                <ul >
+                                <li><a href="#hero" class=""></a></li>
+                                
+                                
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                 <li><a href="#hero" class=""></a></li>
+                                  <li><a href="#hero" class=""></a></li>
+                                   <li><a href="#hero" class=""></a></li>
+                                    <li><a href="#hero" class=""></a></li>
+                                     <li><a href="#hero" class=""></a></li>
+                                    <li><a href="#hero" class=""></a></li>
+                                     <li><a href="#hero" class=""></a></li>
+                                      <li><a href="#hero" class=""></a></li>
+                                       <li><a href="#hero" class=""></a></li>
+                                        <li><a href="#hero" class=""></a></li>
+                                         <li><a href="#hero" class=""></a></li>
+                                         <li><a href="#hero" class=""></a></li>
+                                <li><a href="./index" class="active">Home</a></li>
+                                <li><a href="#featured-services">More Services</a></li>
+                               
+                                @if (User.IsInRole("client"))
+                                {
+                                    <li><a href="./Agents/Agents_list">List of Clients</a></li>
+                                }
+                                else if (User.IsInRole("admin"))
+                                {
+                                    <li><a href="/Users_list">List of Users</a></li>
+                                }
+
+
+                                <li class="auth-partial">
+                                   @await Html.PartialAsync("_LoginPartial")
+                                       
+                                 </li>
+                                
+                                
+                            </ul>
+                                
+                            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                        </nav>
+                           
+                            
+                    </div>
+
+                </div>
+
+            </header>
+           
+            
+
+            <main class="main">
+               
+
+                <!-- Hero Section -->
+               
+                    <section id="hero" class="hero section light-background">
+
+                        <div class="container">
+                            <div class="row gy-4">
+                                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+                                    <h1>Welcome to <span>UIQ</span></h1>
+                                    <p>"We are a team of  developers creating dynamic websites for generating quotes and invoices with cutting-edge technology."</p>
+                                    <div class="d-flex">
+                                    @if (User.IsInRole("client"))
+                                    {
+                                        <a href="./Agents/Agents_list" class="btn-get-started">Get Started</a>
+                                    }
+                                    else if (User.IsInRole("admin"))
+                                    {
+                                        <a href="/Users_list" class="btn-get-started">Get Started</a>
+                                    }
+                                    
+
+                                    </div>
+                                </div>
+                            </div>
+
+                    </section><!-- /Hero Section -->
+                    <!-- Featured Services Section -->
+                @if (User.IsInRole("client"))
+                {
+                    <section id="featured-services" class="featured-services section">
+
+                        <div class="container">
+                            <center>
+                                <div class="row gy-4 d-flex flex-row justify-content-center">
+
+
+                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="service-item position-relative">
+                                            <div class="icon"><i class="bi bi-activity icon"></i></div>
+                                            <h4><a href="./Agents/Create" class="stretched-link"> <center>Option 1</center></a></h4>
+                                            <p>From Here You Can Add  a Client</p>
+                                        </div>
+                                    </div><!-- End Service Item -->
+
+                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                                        <div class="service-item position-relative">
+                                            <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+                                            <h4><a href="./Agents/Agents_list" class="stretched-link "><center>Option 2</center></a></h4>
+                                            <p>From Here You Can See You Dashboard of Client</p>
+                                        </div>
+                                    </div><!-- End Service Item -->
+
+                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                                        <div class="service-item position-relative">
+                                            <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+                                            <h4><a href="./Agents/Agents_list" class="stretched-link"> <center>Option 3</center></a></h4>
+                                            <p>From Here You Can change the information related to Client</p>
+                                        </div>
+                                    </div><!-- End Service Item -->
+
+
+
+                                </div>
+                            </center>
+                        </div>
+                    </section>
+                }
+                else
+                {
+                    <section id="featured-services" class="featured-services section">
+
+                        <div class="container">
+                            <center>
+                                <div class="row gy-4 d-flex flex-row justify-content-center">
+
+
+                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="service-item position-relative">
+                                            <div class="icon"><i class="bi bi-activity icon"></i></div>
+                                            <h4><a href="/Users_list" class="stretched-link"> <center>Option 1</center></a></h4>
+                                            <p>From Here You Can Add  a User</p>
+                                        </div>
+                                    </div><!-- End Service Item -->
+
+                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                                        <div class="service-item position-relative">
+                                            <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+                                            <h4><a href="/Users_list" class="stretched-link "><center>Option 2</center></a></h4>
+                                            <p>From Here You Can See You Dashboard of Users</p>
+                                        </div>
+                                    </div><!-- End Service Item -->
+
+                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                                        <div class="service-item position-relative">
+                                            <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+                                            <h4><a href="/Users_list" class="stretched-link"> <center>Option 3</center></a></h4>
+                                            <p>From Here You Can change the information related to Users</p>
+                                        </div>
+                                    </div><!-- End Service Item -->
+
+
+
+                                </div>
+                            </center>
+                        </div>
+                    </section>
+                }
+
+                    @if (User.IsInRole("client"))
+                {
+                    <section id="services" class="services section">
+
+                        <!-- Section Title -->
+                        <div class="container section-title" data-aos="fade-up">
+                            <h2>Services</h2>
+                            <p><span>Check Our</span> <span class="description-title">Services</span></p>
+                        </div><!-- End Section Title -->
+
+                        <div class="container">
+                            <center>
+                                <div class="row gy-4 d-flex flex-row justify-content-center">
+
+                                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                                        <div class="service-item position-relative">
+                                            <div class="icon">
+                                                <i class="bi bi-calendar4-week"></i>
+                                            </div>
+                                            <a href="/Generate_Inv" class="stretched-link">
+                                                <h3>Invoice</h3>
+                                            </a>
+                                            <p>Here Dear User you can Create your Customized Invoices </p>
+                                            <a href="/Generate_Inv" class="stretched-link"></a>
+                                        </div>
+                                    </div><!-- End Service Item -->
+
+                                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                                        <div class="service-item position-relative">
+                                            <div class="icon">
+                                                <i class="bi bi-chat-square-text"></i>
+                                            </div>
+                                            <a href="/GenerateQuote" class="stretched-link">
+                                                <h3>Quote</h3>
+                                            </a>
+                                            <p>Here Dear User you can Create your Customized Quotes</p>
+                                            <a href="/GenerateQuote" class="stretched-link"></a>
+                                        </div>
+                                    </div><!-- End Service Item -->
+                            </center>
+                        </div>
+
+
+
+                    </section>
+                    <br />
+                    <br />
+
+                    <footer id="footer" class="footer">
+
+                        <div class="footer-newsletter">
+                            <div class="container">
+                                <div class="row justify-content-center text-center">
+                                    <div class="col-lg-6">
+                                        <h4>Join Our New Solution</h4>
+                                        <div class="container copyright text-center mt-4">
+                                            <p>© <span>Copyright</span> <strong class="px-1 sitename"> 2024 - UIQ</strong> <span>All Rights Reserved</span></p>
+                                            <div class="credits">
+                                                <!-- All the links in the footer should remain intact. -->
+                                                <!-- You can delete the links only if you've purchased the pro version. -->
+                                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                                                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container footer-top">
+                            <div class="row gy-4">
+                                <div class="col-lg-4 col-md-6 footer-about">
+                                    <a href="index.html" class="d-flex align-items-center">
+                                        <span class="sitename">UIQ</span>
+                                    </a>
+                                    <div class="footer-contact pt-3">
+                                        <p>A108 Adam Street</p>
+                                        <p>Emsi Centre, CB 535022</p>
+                                        <p class="mt-3"><strong>Phone:</strong> <span>+212 688881166</span></p>
+                                        <p><strong>Email:</strong> <span>znafil177@gmail.com</span></p>
+                                        <p><strong>Or</strong> <span>Yasminekouis@gmail.com</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-md-3 footer-links">
+                                    <h4>Useful Links</h4>
+                                    <ul>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">More Services</a></li>
+                                        @if (User.IsInRole("client"))
+                                        {
+                                            <li><i class="bi bi-chevron-right"></i> <a href="#">List of Clients</a></li>
+                                        }
+                                        else if (User.IsInRole("admin"))
+                                        {
+                                            <li><i class="bi bi-chevron-right"></i> <a href="#">List of Users</a></li>
+                                        }
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-2 col-md-3 footer-links">
+                                    <h4>Our Services</h4>
+                                    <ul>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">Inovice</a></li>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">Quote</a></li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                    <h4>Follow Us</h4>
+                                    <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                                    <div class="social-links d-flex">
+                                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                                        <a href=""><i class="bi bi-facebook"></i></a>
+                                        <a href=""><i class="bi bi-instagram"></i></a>
+                                        <a href=""><i class="bi bi-linkedin"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="container copyright text-center mt-4">
+                            <p>© <span>Copyright</span> <strong class="px-1 sitename">UIQ</strong> <span>All Rights Reserved</span></p>
+                            <div class="credits">
+                                <!-- All the links in the footer should remain intact. -->
+                                <!-- You can delete the links only if you've purchased the pro version. -->
+                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+
+                            </div>
+                        </div>
+
+                    </footer>
+                }
+                else if (User.IsInRole("admin"))
+                {
+                    
+                    <br/>
+                    <br/>
+
+                    <footer id="footer" class="footer">
+
+                        <div class="footer-newsletter">
+                            <div class="container">
+                                <div class="row justify-content-center text-center">
+                                    <div class="col-lg-6">
+                                        <h4>Join Our New Solution</h4>
+                                        <div class="container copyright text-center mt-4">
+                                            <p>© <span>Copyright</span> <strong class="px-1 sitename"> 2024 - UIQ</strong> <span>All Rights Reserved</span></p>
+                                            <div class="credits">
+                                                <!-- All the links in the footer should remain intact. -->
+                                                <!-- You can delete the links only if you've purchased the pro version. -->
+                                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                                                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container footer-top">
+                            <div class="row gy-4">
+                                <div class="col-lg-4 col-md-6 footer-about">
+                                    <a href="index.html" class="d-flex align-items-center">
+                                        <span class="sitename">UIQ</span>
+                                    </a>
+                                    <div class="footer-contact pt-3">
+                                        <p>A108 Adam Street</p>
+                                        <p>Emsi Centre, CB 535022</p>
+                                        <p class="mt-3"><strong>Phone:</strong> <span>+212 688881166</span></p>
+                                        <p><strong>Email:</strong> <span>znafil177@gmail.com</span></p>
+                                        <p><strong>Or</strong> <span>Yasminekouis@gmail.com</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-md-3 footer-links">
+                                    <h4>Useful Links</h4>
+                                    <ul>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">More Services</a></li>
+                                        @if (User.IsInRole("client"))
+                                        {
+                                            <li><i class="bi bi-chevron-right"></i> <a href="#">List of Clients</a></li>
+                                        }
+                                        else if (User.IsInRole("admin"))
+                                        {
+                                            <li><i class="bi bi-chevron-right"></i> <a href="#">List of Users</a></li>
+                                        }
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-2 col-md-3 footer-links">
+                                    <h4>Our Services</h4>
+                                    <ul>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">Inovice</a></li>
+                                        <li><i class="bi bi-chevron-right"></i> <a href="#">Quote</a></li>
+                                      
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                    <h4>Follow Us</h4>
+                                    
+                                    <div class="social-links d-flex">
+                                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                                        <a href=""><i class="bi bi-facebook"></i></a>
+                                        <a href=""><i class="bi bi-instagram"></i></a>
+                                        <a href=""><i class="bi bi-linkedin"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="container copyright text-center mt-4">
+                            <p>© <span>Copyright</span> <strong class="px-1 sitename">UIQ</strong> <span>All Rights Reserved</span></p>
+                            <div class="credits">
+                                <!-- All the links in the footer should remain intact. -->
+                                <!-- You can delete the links only if you've purchased the pro version. -->
+                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+                               
+                            </div>
+                        </div>
+
+                    </footer>}
+
+               
+               
+               
+
+            <!-- Scroll Top -->
+            <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+            <!-- Preloader -->
+            <div id="preloader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <!-- Vendor JS Files -->
+            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="assets/vendor/php-email-form/validate.js"></script>
+            <script src="assets/vendor/aos/aos.js"></script>
+            <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+            <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+            <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+            <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+            <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+            <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+            <!-- Main JS File -->
+            <script src="./js/main.js"></script>
+
+        </body>
+
+        </html>
+
+        
+    }else{
+    @if (!User.IsInRole("admin") && !User.IsInRole("client")){ 
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>UIQ</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Gestion_Devis_Facture.styles.css" asp-append-version="true" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <!-- Favicons -->
+        <link href="./img/favicon.png" rel="icon">
+        <link href="./img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+        <!-- Main CSS File -->
+        <link href="./css/main.css" rel="stylesheet">
+        <link href="./css/site.css" rel="stylesheet">
+
+
+        <!-- =======================================================
+        * Template Name: BizLand
+        * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+        * Updated: Aug 07 2024 with Bootstrap v5.3.3
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
+
+    </head>
+
+
+    <body class="index-page">
+
+        <header id="header" class="header sticky-top">
+            @if (!User.IsInRole("admin") && !User.IsInRole("client"))
+            {
+
+
+                <div class="branding d-flex align-items-center">
+
+                    <div class="container position-relative d-flex align-items-center justify-content-between">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <!-- Uncomment the line below if you also wish to use an image logo -->
+                            <!-- <img src="assets/img/logo.png" alt=""> -->
+                            <h1 class="sitename">UIQ</h1>
+                        </a>
+
+                        <nav id="navmenu" class="navmenu">
+                            <ul>
+                                <li><a href="#hero" class=""></a></li>
+
+
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                                <li><a href="#hero" class=""></a></li>
+                               
+                                <li><a href="./index" class="active">Home</a></li>
+                                <li><a href="#featured-services">More Services</a></li>
+                                        <li class="auth-partial">
+                                            @await Html.PartialAsync("_LoginPartial")
+
+                                        </li>
+
+
+
+
+
+
+                            </ul>
+
+
+                            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                        </nav>
+
+
+                    </div>
+
+                </div>
+            }
+        </header>
+                <main class="main">
+
+
+                    <!-- Hero Section -->
+
+                    <section id="hero" class="hero section light-background">
+
+                        <div class="container">
+                            <div class="row gy-4">
+                                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+                                    <h1>Welcome to <span>UIQ</span></h1>
+                                    <p>"We are a team of  developers creating dynamic websites for generating quotes and invoices with cutting-edge technology."</p>
+                                    <div class="d-flex">
+                                       <ul>
+                                            <a asp-area="Identity" asp-page="/Account/Login" class="btn-get-started">Get Started</a>
+                                          
+                                            <a asp-area="Identity" asp-page="/Account/Register" class="btn-get-started">Get Account</a>
+                                        </ul>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                    </section>
+
+        </main>
+
+
+
+        <br />
+        <br />
+
+        <footer id="footer" class="footer">
+            @if (!User.IsInRole("admin") && !User.IsInRole("client"))
+            {
+
+                <div class="footer-newsletter">
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-lg-6">
+                                <h4>Join Our New Solution</h4>
+                                <div class="container copyright text-center mt-4">
+                                    <p>© <span>Copyright</span> <strong class="px-1 sitename"> 2024 - UIQ</strong> <span>All Rights Reserved</span></p>
+                                    <div class="credits">
+                                        <!-- All the links in the footer should remain intact. -->
+                                        <!-- You can delete the links only if you've purchased the pro version. -->
+                                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                                        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container footer-top">
+                    <div class="row gy-4">
+                        <div class="col-lg-4 col-md-6 footer-about">
+                            <a href="index.html" class="d-flex align-items-center">
+                                <span class="sitename">UIQ</span>
+                            </a>
+                            <div class="footer-contact pt-3">
+                                <p>A108 Adam Street</p>
+                                <p>Emsi Centre, CB 535022</p>
+                                <p class="mt-3"><strong>Phone:</strong> <span>+212 688881166</span></p>
+                                <p><strong>Email:</strong> <span>znafil177@gmail.com</span></p>
+                                <p><strong>Or</strong> <span>Yasminekouis@gmail.com</span></p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 footer-links">
+                            <h4>Useful Links</h4>
+                            <ul>
+                                <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+                                <li><i class="bi bi-chevron-right"></i> <a href="#">More Services</a></li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 footer-links">
+                            <h4>Our Services</h4>
+                            <ul>
+                                <li><i class="bi bi-chevron-right"></i> <a href="#">Inovice</a></li>
+                                <li><i class="bi bi-chevron-right"></i> <a href="#">Quote</a></li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12">
+                            <h4>Follow Us</h4>
+                           
+                            <div class="social-links d-flex">
+                                <a href=""><i class="bi bi-twitter-x"></i></a>
+                                <a href=""><i class="bi bi-facebook"></i></a>
+                                <a href=""><i class="bi bi-instagram"></i></a>
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container copyright text-center mt-4">
+                    <p>© <span>Copyright</span> <strong class="px-1 sitename">UIQ</strong> <span>All Rights Reserved</span></p>
+                    <div class="credits">
+                        <!-- All the links in the footer should remain intact. -->
+                        <!-- You can delete the links only if you've purchased the pro version. -->
+                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+
+                    </div>
+                </div>
+            }
+        </footer>
+
+
+
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Preloader -->
+        <div id="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+        <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+        <!-- Main JS File -->
+        <script src="./js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+        @*  @if (!User.IsInRole("admin") || !User.IsInRole("client"))
+    {
+    <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2024 - Gestion_Devis_Facture - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    </div>
+    </footer>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)*@
+
+    </body>
+
+    </html>
+
+  }}  
+}
+
+
+@{@*
+     // <a href="/User">User</a><br/>
+  <a href="/Client">Client</a><br />
+  <a href="/Admin">Admin</a><br />*@
+}
+
+
