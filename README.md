@@ -6,6 +6,9 @@ Admin pages:
 
 ![image](https://github.com/user-attachments/assets/7cae741c-ffe3-44ec-ad6b-ef5e362771b2)
 
+![image](https://github.com/user-attachments/assets/1bad44fe-3ac2-4849-b65c-2487bde62de9)
+
+
 User pages:
 
 ![image](https://github.com/user-attachments/assets/180532d0-2573-4acd-9c94-8c18d2a72077)
