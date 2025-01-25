@@ -16,6 +16,10 @@ User pages:
 
 ![image](https://github.com/user-attachments/assets/21b89449-9c9e-4cb4-8971-3cde081ec0f2)
 
+![image](https://github.com/user-attachments/assets/71a0f10a-dc3e-4dee-a9a0-850b4f043fdf)
+
+![image](https://github.com/user-attachments/assets/b977117b-9f24-4453-878a-c25670b3ad7f)
+
 
 
 
